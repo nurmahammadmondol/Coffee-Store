@@ -5,9 +5,12 @@ const Navbar = () => {
   const Links = (
     <div className="flex items-center gap-5">
       <NavLink>Home</NavLink>
-      <NavLink>Item 1</NavLink>
-      <NavLink>Item 2</NavLink>
-      <NavLink>Item 3</NavLink>
+      <NavLink>All Coffee</NavLink>
+      <NavLink>Shop</NavLink>
+      <NavLink>Order</NavLink>
+      <NavLink>Feedback</NavLink>
+      <NavLink>About</NavLink>
+      <NavLink>Contact Us</NavLink>
     </div>
   );
 
@@ -45,11 +48,8 @@ const Navbar = () => {
           Espresso Emporium
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{Links}</ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
       </div>
     </div>
   );
