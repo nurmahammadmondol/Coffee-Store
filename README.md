@@ -65,4 +65,6 @@ practices with a clean design to offer an engaging user experience.
 
 - The frontend is deployed on **Netlify** for seamless and fast delivery.
 
+- Live link : https://magnificent-paletas-63a7bb.netlify.app/
+
 ---

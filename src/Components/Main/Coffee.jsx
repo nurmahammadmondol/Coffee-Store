@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 import Swal from 'sweetalert2';
 
 const Coffee = ({ coffee }) => {
   const { _id, name, chef, price, photo } = coffee;
   const navigate = useNavigate();
+
+  const { User } = useContext(AuthContext);
 
   const handleRemoveCoffee = ID => {
     console.log(ID);
@@ -68,7 +72,42 @@ const Coffee = ({ coffee }) => {
           </p> */}
         </div>
 
-        <div className="join join-vertical space-y-2">
+        {User ? (
+          <div className="join join-vertical space-y-2">
+            <Link to={`/Details/${_id}`}>
+              <button className="btn join-item bg-[#D2B48C] text-white">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </Link>
+            <Link to={`/UpdateCoffee/${_id}`}>
+              <button className="btn join-item bg-[#3C393B] text-white">
+                <i class="fa-solid fa-user-pen"></i>
+              </button>
+            </Link>
+
+            <button
+              onClick={() => handleRemoveCoffee(_id)}
+              className="btn join-item bg-[#EA4744] text-white"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        ) : (
+          <div className="join join-vertical space-y-2">
+            <button className="btn join-item bg-[#D2B48C] text-white">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+
+            <button className="btn join-item bg-[#3C393B] text-white">
+              <i class="fa-solid fa-user-pen"></i>
+            </button>
+
+            <button className="btn join-item bg-[#EA4744] text-white">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        )}
+        {/* <div className="join join-vertical space-y-2">
           <Link to={`/Details/${_id}`}>
             <button className="btn join-item bg-[#D2B48C] text-white">
               <i class="fa-solid fa-eye"></i>
@@ -86,7 +125,7 @@ const Coffee = ({ coffee }) => {
           >
             <i class="fa-solid fa-trash"></i>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

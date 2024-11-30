@@ -1,21 +1,41 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/pic/logo1.png';
+import { useContext } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
+  const { User, LogOutUser } = useContext(AuthContext);
+
   const Links = (
     <div className="flex items-center gap-5">
-      <NavLink>Home</NavLink>
-      <NavLink>All Coffee</NavLink>
-      <NavLink>Shop</NavLink>
-      <NavLink>Order</NavLink>
-      <NavLink>Feedback</NavLink>
+      <NavLink to="/">Home</NavLink>
+
+      {User && (
+        <>
+          <NavLink to="/Coffees">All Coffee</NavLink>
+          <NavLink to="/Shop">Shop</NavLink>
+          <NavLink to="/Order">Order</NavLink>
+          <NavLink to="/Feedback">Feedback</NavLink>
+        </>
+      )}
+
       <NavLink>About</NavLink>
       <NavLink>Contact Us</NavLink>
     </div>
   );
 
+  const handleLogOut = () => {
+    LogOutUser()
+      .then(() => {
+        console.log('Log out success');
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
   return (
-    <div className="navbar w-11/12 mx-auto text-white">
+    <nav className="navbar w-11/12 mx-auto text-white">
       <div className="navbar-start ">
         <div className="dropdown ">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,10 +68,30 @@ const Navbar = () => {
           Espresso Emporium
         </a>
       </div>
-      <div className="navbar-end hidden lg:flex">
+      <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{Links}</ul>
       </div>
-    </div>
+
+      <div className="navbar-end">
+        {User ? (
+          <div>
+            <small>{User.email}</small>
+            <button
+              onClick={handleLogOut}
+              className="btn btn-ghost text-2xl rancho-regular"
+            >
+              Log Out
+            </button>
+          </div>
+        ) : (
+          <Link to="/Login">
+            <button className="btn btn-ghost text-2xl rancho-regular">
+              Log in
+            </button>
+          </Link>
+        )}
+      </div>
+    </nav>
   );
 };
 

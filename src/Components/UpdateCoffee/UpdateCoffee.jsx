@@ -74,7 +74,6 @@ const UpdateCoffee = () => {
         backgroundPosition: 'center',
       }}
     >
-      {/* w1Vz3z6EiCIqNgME*/}
       <div
         onClick={handleBack}
         className="w-11/12 md:w-10/12 lg:w-9/12 mx-auto pb-5 flex items-center gap-2 font-bold text-sm rancho-regular"

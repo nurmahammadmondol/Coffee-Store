@@ -31,7 +31,7 @@ const OurPopularProducts = () => {
           </Link>
         </div>
 
-        <div className="mt-10 grid md:grid-cols-2 gap-10 h-[820px]  overflow-auto ">
+        <div className="mt-10 h-[820px] grid grid-cols-1 md:grid-cols-2 gap-10  overflow-auto ">
           {coffees.map(coffee => (
             <Coffee key={coffee._id} coffee={coffee}></Coffee>
           ))}
