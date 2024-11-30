@@ -44,7 +44,10 @@ const router = createBrowserRouter([
         <UpdateCoffee></UpdateCoffee>
       </PrivetRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:1000/coffees/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://coffee-shop-server-site-five.vercel.app/coffees/${params.id}`
+      ),
   },
   {
     path: '/Coffees',
@@ -65,7 +68,10 @@ const router = createBrowserRouter([
   {
     path: '/Details/:id',
     element: <Details></Details>,
-    loader: ({ params }) => fetch(`http://localhost:1000/coffees/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://coffee-shop-server-site-five.vercel.app/coffees/${params.id}`
+      ),
   },
   {
     path: '/Login',

@@ -8,7 +8,7 @@ const OurPopularProducts = () => {
   const [coffees, setCoffees] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:1000/coffees')
+    fetch('https://coffee-shop-server-site-five.vercel.app/coffees')
       .then(res => res.json())
       .then(data => {
         // console.log(data);
