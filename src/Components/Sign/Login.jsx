@@ -1,8 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import LoginPageBG from '../../assets/pic/9.png';
 import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import Typewriter from 'typewriter-effect';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const { LoginUser, LoginWithGoogle } = useContext(AuthContext);
@@ -19,9 +20,24 @@ const Login = () => {
     LoginUser(email, password)
       .then(result => {
         console.log(result.user);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'You have successfully logged in to your account.',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate('/');
       })
       .catch(error => {
         console.log(error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Log in to your account correctly.!',
+          confirmButtonColor: '#E3B577',
+          footer: '<a href="/Registration">Why do I have this issue?</a>',
+        });
       });
   };
 

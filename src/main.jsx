@@ -13,9 +13,7 @@ import Registration from './Components/Sign/Registration.jsx';
 import AuthProvider from './Components/Provider/AuthProvider.jsx';
 import PrivetRoute from './Route/PrivetRoute.jsx';
 import Coffees from './Components/Main/AllCoffee/Coffees.jsx';
-import Info from './Components/Main/Feetback/Info.jsx';
 import Order from './Components/Main/Order/Order.jsx';
-import Shop from './Components/Main/Shop/Shop.jsx';
 
 const router = createBrowserRouter([
   {
@@ -53,18 +51,12 @@ const router = createBrowserRouter([
     path: '/Coffees',
     element: <Coffees></Coffees>,
   },
-  {
-    path: '/Feedback',
-    element: <Info></Info>,
-  },
+
   {
     path: '/Order',
     element: <Order></Order>,
   },
-  {
-    path: '/Shop',
-    element: <Shop></Shop>,
-  },
+
   {
     path: '/Details/:id',
     element: <Details></Details>,

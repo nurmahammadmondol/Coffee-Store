@@ -8,6 +8,7 @@ import {
 } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 import auth from '../Fire/Firebase';
+import Swal from 'sweetalert2';
 
 export const AuthContext = createContext(null);
 
@@ -35,9 +36,38 @@ const AuthProvider = ({ children }) => {
   };
 
   const LogOutUser = () => {
-    alert('account delete');
-    return signOut(auth);
+    // alert('account delete');
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Want to log out of your account ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#E3B577',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logOut it!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Log Out!',
+          text: 'Your account has been logged out..',
+          icon: 'success',
+          confirmButtonColor: '#E3B577',
+        });
+        return signOut(auth);
+      }
+    });
   };
+
+  const [Coffees, setCoffees] = useState([]);
+
+  useEffect(() => {
+    fetch('https://coffee-shop-server-site-five.vercel.app/coffees')
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data);
+        setCoffees(data);
+      });
+  }, []);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, User => {
@@ -58,6 +88,8 @@ const AuthProvider = ({ children }) => {
     LogOutUser,
     User,
     setUser,
+    Coffees,
+    setCoffees,
   };
 
   return (

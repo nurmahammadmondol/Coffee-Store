@@ -8,10 +8,14 @@ const Coffee = ({ coffee }) => {
   const { _id, name, chef, price, photo } = coffee;
   const navigate = useNavigate();
 
-  const { User } = useContext(AuthContext);
+  const { User, Coffees, setCoffees } = useContext(AuthContext);
 
   const handleRemoveCoffee = ID => {
     console.log(ID);
+    console.log(Coffees);
+
+    const RemainingCoffee = Coffees.filter(coffee => coffee._id !== ID);
+    // console.log(RemainingCoffee);
 
     Swal.fire({
       title: 'Are you sure?',
@@ -36,7 +40,8 @@ const Coffee = ({ coffee }) => {
                 text: 'Your file has been deleted.',
                 icon: 'success',
               });
-              navigate(0);
+
+              setCoffees(RemainingCoffee);
             }
           });
       }
@@ -44,8 +49,8 @@ const Coffee = ({ coffee }) => {
   };
 
   return (
-    <div className="bg-[#F5F4F1] flex items-center gap-5 h-[220px] p-7 rounded-md z-50">
-      <div className="h-[180px] w-1/3 " data-aos="fade-right">
+    <div className="bg-[#F5F4F1] flex items-center gap-4 h-[220px] p-7 rounded-md z-50">
+      <div className="h-full w-1/3 " data-aos="fade-right">
         <img className="h-full w-full " src={photo} alt="Coffee Photo" />
       </div>
 
@@ -55,16 +60,16 @@ const Coffee = ({ coffee }) => {
       >
         <div>
           <h3>
-            <span className="font-semibold">Name :</span>
-            <span className="text-sm"> {name}</span>
+            <span className="font-semibold text-sm  md:text-lg">Name :</span>
+            <span className="text-xs md:text-sm"> {name}</span>
           </h3>
           <p>
-            <span className="font-semibold">Chef :</span>
-            <span className="text-sm"> {chef}</span>
+            <span className="font-semibold text-sm  md:text-lg">Chef :</span>
+            <span className="text-xs md:text-sm"> {chef}</span>
           </p>
           <p>
-            <span className="font-semibold">Price :</span>
-            <span className="text-sm"> {price} Taka</span>
+            <span className="font-semibold text-sm  md:text-lg">Price :</span>
+            <span className="text-xs md:text-sm"> {price} Taka</span>
           </p>
           {/* <p>
             <span className="font-semibold">Coffee ID :</span>
@@ -75,36 +80,40 @@ const Coffee = ({ coffee }) => {
         {User ? (
           <div className="join join-vertical space-y-2">
             <Link to={`/Details/${_id}`}>
-              <button className="btn join-item bg-[#D2B48C] text-white">
+              <button className="btn btn-xs md:btn-sm join-item bg-[#D2B48C] text-white">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </Link>
             <Link to={`/UpdateCoffee/${_id}`}>
-              <button className="btn join-item bg-[#3C393B] text-white">
+              <button className="btn btn-xs md:btn-sm join-item bg-[#3C393B] text-white">
                 <i class="fa-solid fa-user-pen"></i>
               </button>
             </Link>
 
             <button
               onClick={() => handleRemoveCoffee(_id)}
-              className="btn join-item bg-[#EA4744] text-white"
+              className="btn  btn-xs md:btn-sm join-item bg-[#EA4744] text-white"
             >
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
         ) : (
           <div className="join join-vertical space-y-2">
-            <button className="btn join-item bg-[#D2B48C] text-white">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-
-            <button className="btn join-item bg-[#3C393B] text-white">
-              <i class="fa-solid fa-user-pen"></i>
-            </button>
-
-            <button className="btn join-item bg-[#EA4744] text-white">
-              <i class="fa-solid fa-trash"></i>
-            </button>
+            <Link to="/Login">
+              <button className="btn join-item bg-[#D2B48C] text-white">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </Link>
+            <Link to="/Login">
+              <button className="btn join-item bg-[#3C393B] text-white">
+                <i class="fa-solid fa-user-pen"></i>
+              </button>
+            </Link>
+            <Link to="/Login">
+              <button className="btn join-item bg-[#EA4744] text-white">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </Link>
           </div>
         )}
         {/* <div className="join join-vertical space-y-2">

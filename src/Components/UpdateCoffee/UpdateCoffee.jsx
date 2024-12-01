@@ -44,8 +44,8 @@ const UpdateCoffee = () => {
     })
       .then(res => res.json())
       .then(data => {
-        // console.log(data);
-        if (data.modifiedCount > 0) {
+        console.log(data);
+        if (data.modifiedCount) {
           Swal.fire({
             title: 'Update Success',
             text: 'Your product has been successfully updated.',

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import addCoffeePageBG from '../../assets/pic/11.png';
+import Swal from 'sweetalert2';
 
 const AddNewCoffee = () => {
   const navigate = useNavigate();
@@ -37,10 +38,19 @@ const AddNewCoffee = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        // if (data.insertedId > 0) {
-
-        // }
+        // console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your coffee add success',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          form.reset();
+          navigate('/');
+          navigate(0);
+        }
       });
   };
 
