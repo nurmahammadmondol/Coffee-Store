@@ -14,10 +14,12 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [User, setUser] = useState(null);
+  const [Loading, setLoading] = useState(true);
 
   const AuthGoogle = new GoogleAuthProvider();
 
   const CreateUser = (name, email, password, confirmPassword) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(
       auth,
       name,
@@ -28,14 +30,17 @@ const AuthProvider = ({ children }) => {
   };
 
   const LoginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const LoginWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, AuthGoogle);
   };
 
   const LogOutUser = () => {
+    setLoading(true);
     // alert('account delete');
     Swal.fire({
       title: 'Are you sure?',
@@ -59,6 +64,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const [Coffees, setCoffees] = useState([]);
+  const [Users, setUsers] = useState([]);
 
   useEffect(() => {
     fetch('https://coffee-shop-server-site-five.vercel.app/coffees')
@@ -67,12 +73,19 @@ const AuthProvider = ({ children }) => {
         // console.log(data);
         setCoffees(data);
       });
+
+    fetch('https://coffee-shop-server-site-five.vercel.app/users')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setUsers(data);
+      });
   }, []);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, User => {
+      setLoading(false);
       setUser(User);
-
       console.log('Your account created successfully', User);
     });
 
@@ -90,6 +103,8 @@ const AuthProvider = ({ children }) => {
     setUser,
     Coffees,
     setCoffees,
+    Users,
+    Loading,
   };
 
   return (

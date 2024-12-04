@@ -1,11 +1,9 @@
 import Follow from '../Follow';
-import OurPopularProducts from '../OurPopularProducts';
 
 const Coffees = () => {
   return (
-    <div>
+    <div className="-mt-20">
       <Follow></Follow>
-      <OurPopularProducts></OurPopularProducts>
     </div>
   );
 };

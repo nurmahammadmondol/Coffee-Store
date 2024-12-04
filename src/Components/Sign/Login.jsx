@@ -41,8 +41,16 @@ const Login = () => {
       });
   };
 
+  const handleLoginWithGoogle = () => {
+    LoginWithGoogle()
+      .then(res => res.json())
+      .then(data => {
+        console.log('Google log im ', data);
+      });
+  };
+
   const handleBack = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   return (
@@ -113,7 +121,7 @@ const Login = () => {
         <div className="divider">OR</div>
         <div className="mx-8">
           <button
-            onClick={LoginWithGoogle}
+            onClick={handleLoginWithGoogle}
             className="btn bg-[#E3B577] text-white rancho-regular text-xl  w-full"
           >
             <i class="fa-brands fa-google fa-bounce"></i>

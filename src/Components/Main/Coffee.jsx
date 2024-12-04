@@ -100,17 +100,17 @@ const Coffee = ({ coffee }) => {
         ) : (
           <div className="join join-vertical space-y-2">
             <Link to="/Login">
-              <button className="btn join-item bg-[#D2B48C] text-white">
+              <button className="btn btn-xs md:btn-sm join-item bg-[#D2B48C] text-white">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </Link>
             <Link to="/Login">
-              <button className="btn join-item bg-[#3C393B] text-white">
+              <button className="btn btn-xs md:btn-sm join-item bg-[#3C393B] text-white">
                 <i class="fa-solid fa-user-pen"></i>
               </button>
             </Link>
             <Link to="/Login">
-              <button className="btn join-item bg-[#EA4744] text-white">
+              <button className="btn btn-xs md:btn-sm join-item bg-[#EA4744] text-white">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </Link>

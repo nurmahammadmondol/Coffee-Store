@@ -12,7 +12,7 @@ const Registration = () => {
   const handleRegistration = e => {
     e.preventDefault();
     const form = e.target;
-    // const name = form.name.value;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     // const confirmPassword = form.confirmPassword.value;
@@ -27,6 +27,22 @@ const Registration = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+
+        const userCreateTime = result?.user?.metadata?.creationTime;
+        const userInfo = { name, email, userCreateTime };
+
+        fetch('https://coffee-shop-server-site-five.vercel.app/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+          });
+
         form.reset();
         navigate('/');
       })

@@ -14,11 +14,12 @@ const Navbar = () => {
         <>
           <NavLink to="/Coffees">All Coffee</NavLink>
           <NavLink to="/Order">Order</NavLink>
+          <NavLink to="/Users">Users</NavLink>
         </>
       )}
 
-      <NavLink>About</NavLink>
-      <NavLink>Contact Us</NavLink>
+      <NavLink to="/About">About</NavLink>
+      <NavLink to="/Contact">Contact Us</NavLink>
     </div>
   );
 

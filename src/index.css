@@ -16,8 +16,9 @@
   font-style: normal;
 }
 
-nav a:active {
+nav a.active {
   color: brown;
+  border-bottom: 2px solid red;
   font-size: larger;
   font-weight: bold;
 }

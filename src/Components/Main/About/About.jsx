@@ -1,9 +1,9 @@
-const Order = () => {
+const About = () => {
   return (
     <div className="min-h-screen">
-      <h4>order</h4>
+      <h4>About</h4>
     </div>
   );
 };
 
-export default Order;
+export default About;

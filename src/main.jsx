@@ -14,6 +14,10 @@ import AuthProvider from './Components/Provider/AuthProvider.jsx';
 import PrivetRoute from './Route/PrivetRoute.jsx';
 import Coffees from './Components/Main/AllCoffee/Coffees.jsx';
 import Order from './Components/Main/Order/Order.jsx';
+import User from './Components/Main/Users/User.jsx';
+import About from './Components/Main/About/About.jsx';
+import Contect from './Components/Main/Contect/Contect.jsx';
+import Contact from './Components/Main/Contect/Contect.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +28,39 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <MainPart></MainPart>,
+      },
+      {
+        path: '/Coffees',
+        element: (
+          <PrivetRoute>
+            <Coffees></Coffees>
+          </PrivetRoute>
+        ),
+      },
+
+      {
+        path: '/Users',
+        element: (
+          <PrivetRoute>
+            <User></User>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: '/Order',
+        element: (
+          <PrivetRoute>
+            <Order></Order>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: '/About',
+        element: <About></About>,
+      },
+      {
+        path: '/Contact',
+        element: <Contact></Contact>,
       },
     ],
   },
@@ -46,15 +83,6 @@ const router = createBrowserRouter([
       fetch(
         `https://coffee-shop-server-site-five.vercel.app/coffees/${params.id}`
       ),
-  },
-  {
-    path: '/Coffees',
-    element: <Coffees></Coffees>,
-  },
-
-  {
-    path: '/Order',
-    element: <Order></Order>,
   },
 
   {
